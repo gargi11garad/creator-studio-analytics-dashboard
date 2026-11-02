@@ -18,7 +18,7 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.04em}h1{font-si
 .small{color:var(--muted);font-size:.86rem}.eyebrow{color:#acb1ba;font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .pill{display:inline-block;background:#25272c;border:1px solid #383a40;border-radius:100px;padding:6px 11px;color:#d7d9de;font-size:.78rem}
 .panel{background:linear-gradient(145deg,#1b1d20,#17181b);border:1px solid #2b2d32;border-radius:17px;padding:18px 20px}
-.metric-label{color:#a5a9b1;font-size:.83rem}.metric-value{font-family:'Space Grotesk';font-size:1.95rem;font-weight:700;letter-spacing:-.045em;margin-top:7px}.positive{font-size:.78rem;color:var(--green);margin-top:2px}
+.metric-label{color:#a5a9b1;font-size:.83rem}.metric-value{font-family:'Space Grotesk';font-size:clamp(1.15rem,2vw,1.7rem);font-weight:700;letter-spacing:-.045em;white-space:nowrap;margin-top:7px}.positive{font-size:.78rem;color:var(--green);margin-top:2px}
 .video-thumb{height:82px;width:132px;border-radius:11px;display:grid;place-items:center;font-size:1.7rem;background:linear-gradient(145deg,#bd6c50,#563654)}
 .stButton>button{border-radius:100px;border:1px solid #393b41;background:#1c1e21;color:#f5f6f7;font-weight:600}.stButton>button:hover{border-color:#ff5263;color:#ff8994}
 div[data-testid="stSelectbox"]>div,div[data-testid="stDateInput"]>div>div,div[data-testid="stTextInput"]>div>div{background:#191a1e;border-color:#34363c;color:#f5f6f7}
@@ -58,7 +58,7 @@ impressions = int(total_views * 2.73)
 if section == "Overview":
     st.markdown(f'<div class="eyebrow">CHANNEL OVERVIEW · {date_range.upper()}</div><h1>Your channel at a glance.</h1><p class="small">A clearer picture of what’s working and where to go next.</p>', unsafe_allow_html=True)
     m1,m2,m3,m4=st.columns(4)
-    metrics=[("Views",f"{total_views/1000:.1f}K","↑ 12.8% vs previous period"),("Watch time",f"{hours:,} hrs","↑ 8.4% vs previous period"),("Subscribers",f"+{subs:,}","↑ 6.2% vs previous period"),("Impressions",f"{impressions/1000:.1f}K","↑ 10.1% vs previous period")]
+    metrics=[("Views",f"{total_views/1000:.0f}K","↑ 12.8% vs previous period"),("Watch time",f"{hours/1000:.1f}K hrs","↑ 8.4% vs previous period"),("Subscribers",f"+{subs:,}","↑ 6.2% vs previous period"),("Impressions",f"{impressions/1_000_000:.2f}M","↑ 10.1% vs previous period")]
     for col,(label,value,delta) in zip([m1,m2,m3,m4],metrics):
         with col:
             st.markdown(f'<div class="panel"><div class="metric-label">{label}</div><div class="metric-value">{value}</div><div class="positive">{delta}</div></div>',unsafe_allow_html=True)
